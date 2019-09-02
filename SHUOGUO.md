@@ -16,10 +16,14 @@
 ### X2C的原理
  
 ```
- 通过阅读相关Blog以及Android源码，对技术原理进行深入学习
+ TODO：通过阅读相关Blog以及Android源码，对技术原理进行深入学习
 ```
 
 ### X2C的具体实现
+
+```
+ TODO：通过调试Demo、阅读和分析源码，对X2C代码实现进行梳理
+```
 
    *  bala
    *  bala？
@@ -28,7 +32,11 @@
    *  bala？
    *  bala
       
-### 使用X2C带来了什么
+### X2C带来了什么
+
+```
+ TODO：通过对原理和实现的学习，得出结论
+```
 
 ```
  balabalabalabalabala
@@ -39,12 +47,20 @@
 ### X2C解决问题的能力边界及优缺点
 
 ```
+ TODO：通过前面的学习，总结出X2C中可以为我们所用的部分（以及结合issue，得出现有问题）
+```
+
+```
  balabalabalabalabala
  balabalabalabalabala
  balabalabalabalabala
 ```
 
 ### 我们可以从X2C中学习到什么
+
+```
+ TODO：提炼出学习过程中对我们的启发 如：使用注解、对程序优化的极致追求 等..
+```
 
    *  bala
    *  bala？
