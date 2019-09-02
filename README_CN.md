@@ -1,6 +1,8 @@
 # 背景
 [English](README.md)
 
+[硕果【在工作中成长】](SHUOGUO.md)
+
 &ensp;一般大家在写页面时都是通过xml写布局，通过setContentView、或LayoutInflater.from(context).inflate方法将xml布局加载到内存中。
 
 #### 优点

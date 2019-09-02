@@ -1,6 +1,7 @@
 # Background
 [中文](README_CN.md)
-[硕果【分享你的成长】](SHUOGUO.md)
+
+[硕果【在工作中成长】](SHUOGUO.md)
 
 Generally, when writing a page, everyone writes the layout through xml, and loads the xml layout into memory through set contentView or LayoutInflater.from(context).inflate method.
 #### advantage
