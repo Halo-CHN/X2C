@@ -17,7 +17,10 @@
  
 ```
  TODO：通过阅读相关Blog以及Android源码，对技术原理进行深入学习
+ 
 ```
+
+[Android LayoutInflater原理分析，带你一步步深入了解View(一) --- by guolin](https://blog.csdn.net/guolin_blog/article/details/12921889)
 
 ### X2C的具体实现
 
