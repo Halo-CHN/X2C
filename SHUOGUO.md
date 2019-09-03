@@ -145,7 +145,7 @@
 ```
  TODO：通过调试Demo、阅读和分析源码，对X2C代码实现进行梳理
 ```
-   *  在Activity的onCreate中调用**X2C.setContentView**，最终通过调用**getView**得到View的实例并返回。
+   *  在Activity的onCreate中调用**X2C.setContentView**函数，最终通过调用**X2C.getView**函数得到View的实例并返回。
    
       ```JAVA
          /**
@@ -167,7 +167,7 @@
          }
       ```
     
-   *  在MyFragment的onCreateView中调用**X2C.inflate**，最终调通过用**getView**得到View的实例并返回。
+   *  在MyFragment的onCreateView中调用**X2C.inflate**函数，最终调通过用**X2C.getView函数**得到View的实例并返回。
        
       ```JAVA
          /**
@@ -196,7 +196,7 @@
          }
       ```
         
-   *  由上可见，常用的Activity和Fragment最后都会调用到**核心代码 X2C.getView**，根据X2C的注解声称规则，利用传入的layoutId找到对应的文件，使用**反射**得到View的实例并返回。
+   *  由上可见，常用的Activity和Fragment最后都会调用到**核心代码 X2C.getView**函数，该函数根据X2C的注解声称规则，利用传入的layoutId找到对应的文件，使用**反射**得到View的实例并返回。
    
       ```JAVA
         public static View getView(Context context, int layoutId) {
