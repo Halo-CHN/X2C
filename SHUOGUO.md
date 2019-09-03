@@ -23,44 +23,44 @@
 [Android LayoutInflater原理分析，带你一步步深入了解View(一) --- by guolin](https://blog.csdn.net/guolin_blog/article/details/12921889)
 
    *  加载布局的任务通常都是在Activity中调用setContentView()方法来完成的。其实setContentView()方法的内部也是使用LayoutInflater来加载布局的。
-    ```JAVA
-    ```
+      ```JAVA
+      ```
    *  LayoutInflater其实就是使用Android提供的pull解析方式来解析布局XML文件的。
    
-    ```JAVA
-    ```
+      ```JAVA
+      ```
    *  inflate方法中在createViewFromTag()方法的内部又会去调用createView()方法，然后使用反射的方式创建出View的实例并返回。
    
-    ```JAVA
-      /**
-        * Low-level function for instantiating a view by name. This attempts to
-        * instantiate a view class of the given <var>name</var> found in this
-        * LayoutInflater's ClassLoader.
-        *
-        * <p>
-        * There are two things that can happen in an error case: either the
-        * exception describing the error will be thrown, or a null will be
-        * returned. You must deal with both possibilities -- the former will happen
-        * the first time createView() is called for a class of a particular name,
-        * the latter every time there-after for that class name.
-        *
-        * @param name The full name of the class to be instantiated.
-        * @param attrs The XML attributes supplied for this instance.
-        *
-        * @return View The newly instantiated view, or null.
-        */
-       public final View createView(String name, String prefix, AttributeSet attrs)
-               throws ClassNotFoundException, InflateException {
-           Constructor<? extends View> constructor = sConstructorMap.get(name);
-           if (constructor != null && !verifyClassLoader(constructor)) {
-               constructor = null;
-               sConstructorMap.remove(name);
-           }
-           Class<? extends View> clazz = null;
-   
-           try {
-               Trace.traceBegin(Trace.TRACE_TAG_VIEW, name);
-   
+       ```JAVA
+             /**
+              * Low-level function for instantiating a view by name. This attempts to
+              * instantiate a view class of the given <var>name</var> found in this
+              * LayoutInflater's ClassLoader.
+              *
+              * <p>
+              * There are two things that can happen in an error case: either the
+              * exception describing the error will be thrown, or a null will be
+              * returned. You must deal with both possibilities -- the former will happen
+              * the first time createView() is called for a class of a particular name,
+              * the latter every time there-after for that class name.
+              *
+              * @param name The full name of the class to be instantiated.
+              * @param attrs The XML attributes supplied for this instance.
+              *
+              * @return View The newly instantiated view, or null.
+              */
+             public final View createView(String name, String prefix, AttributeSet attrs)
+                  throws ClassNotFoundException, InflateException {
+              Constructor<? extends View> constructor = sConstructorMap.get(name);
+              if (constructor != null && !verifyClassLoader(constructor)) {
+                  constructor = null;
+                  sConstructorMap.remove(name);
+              }
+              Class<? extends View> clazz = null;
+      
+              try {
+                  Trace.traceBegin(Trace.TRACE_TAG_VIEW, name);
+      
                if (constructor == null) {
                    // Class not found in the cache, see if it's real, and try to add it
                    clazz = mContext.getClassLoader().loadClass(
@@ -105,39 +105,39 @@
                args[1] = attrs;
    
                final View view = constructor.newInstance(args);
-               if (view instanceof ViewStub) {
-                   // Use the same context when inflating ViewStub later.
-                   final ViewStub viewStub = (ViewStub) view;
-                   viewStub.setLayoutInflater(cloneInContext((Context) args[0]));
-               }
-               mConstructorArgs[0] = lastContext;
-               return view;
-   
-           } catch (NoSuchMethodException e) {
-               final InflateException ie = new InflateException(attrs.getPositionDescription()
-                       + ": Error inflating class " + (prefix != null ? (prefix + name) : name), e);
-               ie.setStackTrace(EMPTY_STACK_TRACE);
-               throw ie;
-   
-           } catch (ClassCastException e) {
-               // If loaded class is not a View subclass
-               final InflateException ie = new InflateException(attrs.getPositionDescription()
-                       + ": Class is not a View " + (prefix != null ? (prefix + name) : name), e);
-               ie.setStackTrace(EMPTY_STACK_TRACE);
-               throw ie;
-           } catch (ClassNotFoundException e) {
-               // If loadClass fails, we should propagate the exception.
-               throw e;
-           } catch (Exception e) {
-               final InflateException ie = new InflateException(
-                       attrs.getPositionDescription() + ": Error inflating class "
-                               + (clazz == null ? "<unknown>" : clazz.getName()), e);
-               ie.setStackTrace(EMPTY_STACK_TRACE);
-               throw ie;
-           } finally {
-               Trace.traceEnd(Trace.TRACE_TAG_VIEW);
-           }
-       }
+                  if (view instanceof ViewStub) {
+                      // Use the same context when inflating ViewStub later.
+                      final ViewStub viewStub = (ViewStub) view;
+                      viewStub.setLayoutInflater(cloneInContext((Context) args[0]));
+                  }
+                  mConstructorArgs[0] = lastContext;
+                  return view;
+      
+              } catch (NoSuchMethodException e) {
+                  final InflateException ie = new InflateException(attrs.getPositionDescription()
+                          + ": Error inflating class " + (prefix != null ? (prefix + name) : name), e);
+                  ie.setStackTrace(EMPTY_STACK_TRACE);
+                  throw ie;
+      
+              } catch (ClassCastException e) {
+                  // If loaded class is not a View subclass
+                  final InflateException ie = new InflateException(attrs.getPositionDescription()
+                          + ": Class is not a View " + (prefix != null ? (prefix + name) : name), e);
+                  ie.setStackTrace(EMPTY_STACK_TRACE);
+                  throw ie;
+              } catch (ClassNotFoundException e) {
+                  // If loadClass fails, we should propagate the exception.
+                  throw e;
+              } catch (Exception e) {
+                  final InflateException ie = new InflateException(
+                          attrs.getPositionDescription() + ": Error inflating class "
+                                  + (clazz == null ? "<unknown>" : clazz.getName()), e);
+                  ie.setStackTrace(EMPTY_STACK_TRACE);
+                  throw ie;
+              } finally {
+                  Trace.traceEnd(Trace.TRACE_TAG_VIEW);
+              }
+          }
     ```
 
 ### X2C的具体实现
