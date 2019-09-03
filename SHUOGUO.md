@@ -11,16 +11,16 @@
    
 ### X2C产生的背景  
 
-[README](README_CN.md)
+   [README](README_CN.md)
  
 ### X2C的原理
  
-```
+   ```
  TODO：通过阅读相关Blog以及Android源码，对技术原理进行深入学习
- 
-```
+    
+   ```
 
-[Android LayoutInflater原理分析，带你一步步深入了解View(一) --- by guolin](https://blog.csdn.net/guolin_blog/article/details/12921889)
+   [Android LayoutInflater原理分析，带你一步步深入了解View(一) --- by guolin](https://blog.csdn.net/guolin_blog/article/details/12921889)
 
    *  加载布局的任务通常都是在Activity中调用setContentView()方法来完成的。其实setContentView()方法的内部也是使用LayoutInflater来加载布局的。
       ```JAVA
@@ -167,7 +167,7 @@
          }
       ```
     
-   *  在MyFragment的onCreateView中调用**X2C.inflate**函数，最终调通过用**X2C.getView函数**得到View的实例并返回。
+   *  在Fragment的onCreateView中调用**X2C.inflate**函数，最终调通过用**X2C.getView函数**得到View的实例并返回。
        
       ```JAVA
          /**
@@ -240,27 +240,27 @@
       
 ### X2C带来了什么
 
-```
+   ```
  TODO：通过对原理和实现的学习，得出结论
-```
+   ```
 
-```
+   ```
  balabalabalabalabala
  balabalabalabalabala
  balabalabalabalabala
-```
+   ```
 
 ### X2C解决问题的能力边界及优缺点
 
-```
+   ```
  TODO：通过前面的学习，总结出X2C中可以为我们所用的部分（以及结合issue，得出现有问题）
-```
+   ```
 
-```
+   ``` 
  balabalabalabalabala
  balabalabalabalabala
  balabalabalabalabala
-```
+   ```
 
 ### 我们可以从X2C中学习到什么
 
