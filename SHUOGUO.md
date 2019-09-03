@@ -50,7 +50,7 @@
               * @return View The newly instantiated view, or null.
               */
              public final View createView(String name, String prefix, AttributeSet attrs)
-                  throws ClassNotFoundException, InflateException {
+                 throws ClassNotFoundException, InflateException {
               Constructor<? extends View> constructor = sConstructorMap.get(name);
               if (constructor != null && !verifyClassLoader(constructor)) {
                   constructor = null;
@@ -60,58 +60,58 @@
       
               try {
                   Trace.traceBegin(Trace.TRACE_TAG_VIEW, name);
-      
-               if (constructor == null) {
-                   // Class not found in the cache, see if it's real, and try to add it
-                   clazz = mContext.getClassLoader().loadClass(
-                           prefix != null ? (prefix + name) : name).asSubclass(View.class);
-   
-                   if (mFilter != null && clazz != null) {
-                       boolean allowed = mFilter.onLoadClass(clazz);
-                       if (!allowed) {
-                           failNotAllowed(name, prefix, attrs);
-                       }
-                   }
-                   constructor = clazz.getConstructor(mConstructorSignature);
-                   constructor.setAccessible(true);
-                   sConstructorMap.put(name, constructor);
-               } else {
-                   // If we have a filter, apply it to cached constructor
-                   if (mFilter != null) {
-                       // Have we seen this name before?
-                       Boolean allowedState = mFilterMap.get(name);
-                       if (allowedState == null) {
-                           // New class -- remember whether it is allowed
-                           clazz = mContext.getClassLoader().loadClass(
-                                   prefix != null ? (prefix + name) : name).asSubclass(View.class);
-   
-                           boolean allowed = clazz != null && mFilter.onLoadClass(clazz);
-                           mFilterMap.put(name, allowed);
-                           if (!allowed) {
-                               failNotAllowed(name, prefix, attrs);
-                           }
-                       } else if (allowedState.equals(Boolean.FALSE)) {
-                           failNotAllowed(name, prefix, attrs);
-                       }
-                   }
-               }
-   
-               Object lastContext = mConstructorArgs[0];
-               if (mConstructorArgs[0] == null) {
-                   // Fill in the context if not already within inflation.
-                   mConstructorArgs[0] = mContext;
-               }
-               Object[] args = mConstructorArgs;
-               args[1] = attrs;
-   
-               final View view = constructor.newInstance(args);
-                  if (view instanceof ViewStub) {
-                      // Use the same context when inflating ViewStub later.
-                      final ViewStub viewStub = (ViewStub) view;
-                      viewStub.setLayoutInflater(cloneInContext((Context) args[0]));
+     
+              if (constructor == null) {
+                  // Class not found in the cache, see if it's real, and try to add it
+                  clazz = mContext.getClassLoader().loadClass(
+                          prefix != null ? (prefix + name) : name).asSubclass(View.class);
+  
+                  if (mFilter != null && clazz != null) {
+                      boolean allowed = mFilter.onLoadClass(clazz);
+                      if (!allowed) {
+                          failNotAllowed(name, prefix, attrs);
+                      }
                   }
-                  mConstructorArgs[0] = lastContext;
-                  return view;
+                  constructor = clazz.getConstructor(mConstructorSignature);
+                  constructor.setAccessible(true);
+                  sConstructorMap.put(name, constructor);
+              } else {
+                  // If we have a filter, apply it to cached constructor
+                  if (mFilter != null) {
+                      // Have we seen this name before?
+                      Boolean allowedState = mFilterMap.get(name);
+                      if (allowedState == null) {
+                          // New class -- remember whether it is allowed
+                          clazz = mContext.getClassLoader().loadClass(
+                                  prefix != null ? (prefix + name) : name).asSubclass(View.class);
+  
+                          boolean allowed = clazz != null && mFilter.onLoadClass(clazz);
+                          mFilterMap.put(name, allowed);
+                          if (!allowed) {
+                              failNotAllowed(name, prefix, attrs);
+                          }
+                      } else if (allowedState.equals(Boolean.FALSE)) {
+                          failNotAllowed(name, prefix, attrs);
+                      }
+                  }
+              }
+   
+              Object lastContext = mConstructorArgs[0];
+              if (mConstructorArgs[0] == null) {
+                  // Fill in the context if not already within inflation.
+                  mConstructorArgs[0] = mContext;
+              }
+              Object[] args = mConstructorArgs;
+              args[1] = attrs;
+  
+              final View view = constructor.newInstance(args);
+                 if (view instanceof ViewStub) {
+                     // Use the same context when inflating ViewStub later.
+                     final ViewStub viewStub = (ViewStub) view;
+                     viewStub.setLayoutInflater(cloneInContext((Context) args[0]));
+                 }
+                 mConstructorArgs[0] = lastContext;
+                 return view;
       
               } catch (NoSuchMethodException e) {
                   final InflateException ie = new InflateException(attrs.getPositionDescription()
