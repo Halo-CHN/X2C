@@ -232,7 +232,7 @@
           return layoutId >> 24;
       }
       ```
-   *  在**X2C.getView**函数中使用反射的到View的实例，此处View的类文件是通过注解在编译期间生成的，文件一般在**build/generated/source/apt/debug/com/zhangyue/we/x2c/layouts**目录下可以找到
+   *  在**X2C.getView**函数中使用反射的到View的实例，此处View的类文件是通过注解在编译期间生成的，文件一般在 **/build/generated/source/apt/debug/com/zhangyue/we/x2c/layouts/** 目录下可以找到
       ```JAVA
       /**
        * WARN!!! dont edit this file
@@ -289,7 +289,7 @@
         }
       }
       ```
-   *  注解的使用也是比较简单，在Activity或Fragment的实现类加上**@Xml(layouts = "layoutIdName")**即可
+   *  注解的使用也是比较简单，在Activity或Fragment的实现类加上 **@Xml(layouts = "layoutIdName")**(即R.layout.后面的部分)即可
       ```JAVA
       @Xml(layouts = "activity")
       public class MainActivity extends Activity {
