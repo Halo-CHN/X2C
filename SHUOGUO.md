@@ -239,7 +239,7 @@
       
       }
       ```
-   *  **LayoutInflater**调用的**inflate**函数中在**createViewFromTag()**函数的内部又会去调用**createView()**函数，然后使用反射的方式创建出View的实例并返回。
+   *  **LayoutInflater** 调用的 **inflate** 函数中在 **createViewFromTag()** 函数的内部又会去调用 **createView()** 函数，然后使用反射的方式创建出View的实例并返回。
    
       ```JAVA
       public abstract class LayoutInflater {
